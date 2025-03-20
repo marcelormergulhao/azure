@@ -23,13 +23,15 @@ def publish(id):
 def upsert_device(id):
     payload = request.json
     print(f"Upserting device {id} with {payload}")
-    return jsonify(payload)
+    payload["id"] = id
+    saved_item = azure_wrapper.upsert_new_device(payload)
+    return jsonify(saved_item)
 
 
 @app.route("/device/<id>", methods=["GET"])
 def retrieve_device(id):
     print(f"Retrive data for device {id}")
-    device = {"id": "1234", "type": "temperature", "location": "room1"}
+    device = azure_wrapper.get_device_profile(id)
     return jsonify(device)
 
 
