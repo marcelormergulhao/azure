@@ -6,7 +6,6 @@ import json
 
 from azure_wrapper import azure_wrapper
 
-
 app = Flask(__name__)
 
 
