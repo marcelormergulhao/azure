@@ -42,3 +42,16 @@ az webapp deploy -g home-automation-mm --name home-automation-mm --src-path simu
 3 - Validate webapp can write to Cosmos and Blob Storage
 This requires enabling a Managed Identity (option "Identity" in the portal settings) and then setting the roles/permissions accordingly
 To give the cosmos permission you will need the principal and then execute the CLI commands (use it as SIGNED_USER_ID)
+
+4 - Set up a container registry
+
+5 - Upload image to be used by container app
+  * Login to acr with `az acr login --name REGISTRY_NAME`
+
+6 - Deploy container app
+To test the container locally, you need to create an App Registration and then fill up the env vars 
+AZURE_TENANT_ID, AZURE_CLIENT_ID and AZURE_CLIENT_SECRET with the information from the App Reg.
+
+You also need to fetch the Object ID(not the application, the instance object ID from the "Managed Application in local directory" part) and assign the appropriate permissions.
+
+7 - When deploying the same to Container Instances you need to activate the admin user in the ACR repo. Also need to create the managed identity and assign the permissions.
